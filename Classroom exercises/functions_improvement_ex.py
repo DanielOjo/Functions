@@ -13,9 +13,10 @@ def user_true_or_false(UserAnswer,Ans):
     else:
         print('Sorry, you got the answer wrong. The correct answer is',Ans)
         print()
-        
+               
 def questions():
-    testTable = int(input("Which times-table do you want to be tested on? "))
+    testTable = input("Which times-table do you want to be tested on? ")
+    testTable = int(testTable)
     for questions in range(1,6):
         Num1 = testTable
         Num2 = random.randrange(2,13)
@@ -24,10 +25,10 @@ def questions():
         UserAnswer = int(UserAnswer)
         user_true_or_false(UserAnswer,Ans)
 
-def test_table():
-    
+def main_table_tester():
+    print("Times-table tester")
+    print()
+    questions()
 
 #main program
-print("Times-table tester")
-print()
-questions()
+main_table_tester()
