@@ -1,53 +1,63 @@
-#Daniel Ogunlana
-#Christmas Functions HW Task 1
-#07/01/15
+#Daniel
+#Stretch exercise task 1
+#06/01/15
 
+def user_information():
+    message= input("Please enter your message: ")
+    question= int(input("Please enter a shift value: "))
+    return message, question
 
-def getMode():
-    while True:
+def encrypting(message, question):
+    encrypted_message = ""
+    for character in message:
+        encrypt = ord(character)
+        encrypt = encrypt + question
+        encrypt_2 = chr(encrypt)
+        encrypted_message = encrypted_message + encrypt_2
+    return encrypted_message
+    
+
+def decrypting(message, question):
+    question = -question
+    decrypted_message = ""
+    for character in message:
+        decrypt = ord(character)
+        decrypt = decrypt + question
+        decrypt_2 = chr(decrypt)
+        decrypted_message = decrypted_message + decrypt_2
+    return decrypted_message
+        
+def display(decrypted_message):
+    print(decrypted_message)
+
+def display(encrypted_message):
+    print(encrypted_message)
+
+def main_program(): 
+    message, question = user_information()
+    answer = False
+    while answer == False:
         print("Do you want to encrypt or decrypt a message?")
-        mode = input("Type e for encrypt or type d for decrypt: ")
-        return mode
-        
-            
-def getMessage():
-    message = input("Please enter your message: ")
-    return message
-
-def getKey():
-    print("Please enter the key number (1-25): ")
-    key = int(input())
-    return key
-        
-
-def getTranslatedMessage(mode, message, key):
-    if mode[0] == "d":
-        key = -key
-    translated = ""
-    for symbol in message:
-        if symbol.isalpha():
-            num = ord(symbol)
-            num += key
-            if symbol.isupper():
-                if num > ord('Z'):
-                    num -= 26
-                elif num < ord('A'):
-                    num += 26
-            elif symbol.islower():
-                if num > ord('z'):
-                    num -= 26
-                elif num < ord('a'):
-                    num += 26
-            translated += chr(num)
+        choice = input("Type E to encrypt or D to decrypt a message: ")
+        choice = choice.upper()
+        choice = choice[0]
+        if choice == "E":
+            encrypt = encrypting(message, question)
+            display(encrypt)
+            answer = True
+        elif choice == "D":
+            decrypt= decrypting(message, question)
+            display(decrypt)
+            answer = True
         else:
-            translated += symbol
-    return translated
+            print("Please type in E or D")
 
-def mainProgram():
-    mode = getMode()
-    message = getMessage()
-    key = getKey()
-    print('Your translated text is:')
-    print(getTranslatedMessage(mode, message, key))
 
-mainProgram()
+main_program()
+
+     
+   
+    
+    
+
+        
